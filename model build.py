@@ -48,35 +48,7 @@ train.columns
 
 # In[7]:
 
-cat_var =['QGEN_CAT',
-'QS6_CAT',
-'QS7_CAT',
-'QS9_CAT',
-'QS10_CAT',
-'QS12_CAT',
-'QF5_CAT',
-'QS17_CAT',
-'QA7_CAT',
-'QB3_CAT',
-'QB4R1_CAT',
-'QB4R2_CAT',
-'QB4R3_CAT',
-'QB4R4_CAT',
-'QB5_CAT',
-'QB7_CAT',
-'QH4R18_CAT',
-'QD2R13_99_CAT',
-'Info_gathering_CAT',
-'Care_interaction_CAT',
-'Healthcare_process_CAT',
-'Admin_tasks_CAT',
-'Cost_coverage_CAT',
-'QF4R1_CAT',
-'QF4R6_CAT',
-'QF4R9_CAT',
-'QF4R12_CAT',
-'QS5B_TBDER',
-'QB6_CAT']
+cat_var =['']
 
 
 # In[8]:
@@ -116,17 +88,17 @@ pfr.to_file(output_file)
 
 def f(row):
     if row['QS5B_DER'] == '1000000':
-        val = 'White'
+        val = ''
     elif row['QS5B_DER'] == '0100000':
-        val = 'African_American'
+        val = ''
     elif row['QS5B_DER'] == '0010000':
-        val = 'American_Indian_or_Alaska Native'
+        val = ' Native'
     elif row['QS5B_DER'] == '0001000':
-        val = 'Asian'
+        val = ''
     elif row['QS5B_DER'] == '0000100':
-        val = 'Native_Hawaiian_or_other_Pacific Islander'
+        val = ' Islander'
     elif row['QS5B_DER'] == '000010':
-        val = 'Some_other_race'       
+        val = ''       
     else:
         val = "Prefer_not_to_answer"
     return val
@@ -139,12 +111,12 @@ train['QS5B_DER_VAR'] = train.apply(f, axis=1)
 
 # In[15]:
 
-train['Behavioral_adjust'].head(10)
+train[''].head(10)
 
 
 # In[16]:
 
-train['Behavioral_adjust'] =train['Behavioral_adjust'].astype(str)
+train[''] =train[''].astype(str)
 
 
 # In[17]:
@@ -309,37 +281,7 @@ train_ansys2.to_csv(data_path + 'train_ansys2.csv',index=False)
 
 # In[52]:
 
-categorical_var=['Admin_tasks_CAT',
-'Behavioral_adjust_CAT',
-'Care_interaction_CAT',
-'Chronic',
-'Cost_coverage_CAT',
-'Healthcare_process_CAT',
-'Info_gathering_CAT',
-'QA7_CAT',
-'QB3_CAT',
-'QB4R1_CAT',
-'QB4R2_CAT',
-'QB4R3_CAT',
-'QB4R4_CAT',
-'QB5_CAT',
-'QB6_CAT',
-'QB7_CAT',
-'QD2R13_99_CAT',
-'QF4R1_CAT',
-'QF4R12_CAT',
-'QF4R6_CAT',
-'QF4R9_CAT',
-'QF5_CAT',
-'QGEN_CAT',
-'QH4R18_CAT',
-'QS10_CAT',
-'QS12_CAT',
-'QS17_CAT',
-'QS5B_DER_VAR',
-'QS6_CAT',
-'QS7_CAT',
-'QS9_CAT']
+categorical_var=[]
 
 
 # In[107]:
@@ -364,151 +306,13 @@ train_ansys2.columns
 
 # In[58]:
 
-iv_cat=['Admin_tasks_CAT_0',
-'Admin_tasks_CAT_1',
-'Behavioral_adjust_CAT_0.0',
-'Behavioral_adjust_CAT_1.0',
-'Care_interaction_CAT_0',
-'Care_interaction_CAT_1',
-'Chronic_Chronic_treated',
-'Chronic_Chronic_untreated',
-'Chronic_Not_chronic',
-'Cost_coverage_CAT_0.0',
-'Cost_coverage_CAT_1.0',
-'Healthcare_process_CAT_0',
-'Healthcare_process_CAT_1',
-'Info_gathering_CAT_0',
-'Info_gathering_CAT_1',
-'QA7_CAT_1',
-'QA7_CAT_2',
-'QB3_CAT_1',
-'QB3_CAT_2',
-'QB4R1_CAT_1',
-'QB4R1_CAT_2',
-'QB4R1_CAT_3',
-'QB4R1_CAT_4',
-'QB4R1_CAT_98',
-'QB4R2_CAT_1',
-'QB4R2_CAT_2',
-'QB4R2_CAT_3',
-'QB4R2_CAT_4',
-'QB4R2_CAT_98',
-'QB4R3_CAT_1',
-'QB4R3_CAT_2',
-'QB4R3_CAT_3',
-'QB4R3_CAT_4',
-'QB4R3_CAT_98',
-'QB4R4_CAT_1',
-'QB4R4_CAT_2',
-'QB4R4_CAT_3',
-'QB4R4_CAT_4',
-'QB4R4_CAT_98',
-'QB5_CAT_1',
-'QB5_CAT_2',
-'QB5_CAT_98',
-'QB6_CAT_1.0',
-'QB6_CAT_2.0',
-'QB6_CAT_98.0',
-'QB6_CAT_MISSING',
-'QB7_CAT_1',
-'QB7_CAT_2',
-'QB7_CAT_3',
-'QB7_CAT_4',
-'QB7_CAT_5',
-'QB7_CAT_97',
-'QB7_CAT_99',
-'QD2R13_99_CAT_0',
-'QD2R13_99_CAT_1',
-'QF4R1_CAT_1',
-'QF4R1_CAT_2',
-'QF4R1_CAT_3',
-'QF4R1_CAT_4',
-'QF4R1_CAT_5',
-'QF4R12_CAT_1',
-'QF4R12_CAT_2',
-'QF4R12_CAT_3',
-'QF4R12_CAT_4',
-'QF4R12_CAT_5',
-'QF4R6_CAT_1',
-'QF4R6_CAT_2',
-'QF4R6_CAT_3',
-'QF4R6_CAT_4',
-'QF4R6_CAT_5',
-'QF4R9_CAT_1',
-'QF4R9_CAT_2',
-'QF4R9_CAT_3',
-'QF4R9_CAT_4',
-'QF4R9_CAT_5',
-'QF5_CAT_1',
-'QF5_CAT_2',
-'QF5_CAT_3',
-'QF5_CAT_4',
-'QF5_CAT_5',
-'QF5_CAT_98',
-'QF5_CAT_99',
-'QGEN_CAT_1',
-'QGEN_CAT_2',
-'QH4R18_CAT_1',
-'QH4R18_CAT_2',
-'QH4R18_CAT_3',
-'QH4R18_CAT_5',
-'QS10_CAT_1',
-'QS10_CAT_2',
-'QS10_CAT_3',
-'QS10_CAT_4',
-'QS10_CAT_5',
-'QS10_CAT_6',
-'QS10_CAT_7',
-'QS10_CAT_97',
-'QS12_CAT_1',
-'QS12_CAT_2',
-'QS12_CAT_3',
-'QS12_CAT_4',
-'QS12_CAT_5',
-'QS17_CAT_1',
-'QS17_CAT_2',
-'QS5B_DER_VAR_African_American',
-'QS5B_DER_VAR_American_Indian_or_Alaska Native',
-'QS5B_DER_VAR_Asian',
-'QS5B_DER_VAR_Prefer_not_to_answer',
-'QS5B_DER_VAR_White',
-'QS6_CAT_1',
-'QS6_CAT_2',
-'QS6_CAT_3',
-'QS7_CAT_1.0',
-'QS7_CAT_2.0',
-'QS7_CAT_3.0',
-'QS7_CAT_4.0',
-'QS7_CAT_5.0',
-'QS7_CAT_MISSING',
-'QS9_CAT_1',
-'QS9_CAT_2',
-'QS9_CAT_3',
-'QS9_CAT_4',
-'QS9_CAT_5',
-'QS9_CAT_6',
-'QS9_CAT_7',
-'QS9_CAT_8'
+iv_cat=[
 ]
 
 
 # In[67]:
 
-iv_cont=['Confidence_system',
-'Fin_incentive',
-'Financial_concern_all',
-'Motivation',
-'Non_fin_incentive',
-'QBMI_CONT',
-'QC17_6_ORD',
-'QS1_CONT',
-'QS11',
-'QS8C_CONT',
-'Reliance_on_others',
-'Retail_clinic',
-'Tech_insurer_all',
-'Tech_manage_all',
-'Tech_use_all']
+iv_cont=[]
 
 
 # In[73]:
